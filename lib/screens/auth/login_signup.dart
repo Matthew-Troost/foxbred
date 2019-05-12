@@ -45,13 +45,25 @@ class _LoginSignUpState extends State<LoginSignUp> {
       String userId = "";
       try {
         if (_formMode == FormMode.LOGIN) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
+          var response = await widget.auth.signIn(_email, _password);
+          if (response.contains(" ")) {
+            _errorMessage = response;
+          } else {
+            userId = response;
+            print('Signed in: $userId');
+          }
         } else {
-          userId = await widget.auth.signUp(_email, _password);
-          widget.auth.sendEmailVerification();
-          _showVerifyEmailSentDialog();
-          print('Signed up user: $userId');
+          var response = await widget.auth.signUp(_email, _password);
+
+          if (response.contains(" ")) {
+            _errorMessage = response;
+          } else {
+//add user to our database
+            userId = response;
+            widget.auth.sendEmailVerification();
+            _showVerifyEmailSentDialog();
+            print('Signed up user: $userId');
+          }
         }
         setState(() {
           _isLoading = false;

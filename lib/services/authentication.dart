@@ -19,15 +19,23 @@ class Auth implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<String> signIn(String email, String password) async {
-    FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    return user.uid;
+    try {
+      FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return user.uid;
+    } catch (exception) {
+      return getErrorMessage(exception.code);
+    }
   }
 
   Future<String> signUp(String email, String password) async {
-    FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    return user.uid;
+    try {
+      FirebaseUser user = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return user.uid;
+    } catch (exception) {
+      return getErrorMessage(exception.code);
+    }
   }
 
   Future<FirebaseUser> getCurrentUser() async {
@@ -47,5 +55,22 @@ class Auth implements BaseAuth {
   Future<bool> isEmailVerified() async {
     FirebaseUser user = await _firebaseAuth.currentUser();
     return user.isEmailVerified;
+  }
+
+  String getErrorMessage(String errorCode) {
+    switch (errorCode) {
+      case "ERROR_USER_NOT_FOUND":
+        return "User Not Found";
+      case "ERROR_EMAIL_ALREADY_IN_USE":
+        return "Email in use";
+      case "ERROR_USER_DISABLED":
+        return "User Disabled";
+      case "ERROR_USER_TOKEN_EXPIRED":
+        return "User Token Expired";
+      case "ERROR_INVALID_USER_TOKEN":
+        return "Invalid User Token";
+      default:
+        return "There was an error whilst logging you in";
+    }
   }
 }
