@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "730238599331",
+    "firebase_url": "https://foxbred-efcda.firebaseio.com",
+    "project_id": "foxbred-efcda",
+    "storage_bucket": "foxbred-efcda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730238599331:android:662738537256f9f8",
+        "android_client_info": {
+          "package_name": "com.example.foxbred"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730238599331-i2rte8qrr5oe9tn1rucsgtddus8ovt14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvAEbugvm-pIqlx7HKrTlIW3h8lnXaERY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730238599331-i2rte8qrr5oe9tn1rucsgtddus8ovt14.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "730238599331-porbduaqu3k96et0gonk01vbbk7dsdko.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foxbred"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
