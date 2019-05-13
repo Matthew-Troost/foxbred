@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:foxbred/services/authentication.dart';
 
 class LoginSignUp extends StatefulWidget {
@@ -58,7 +59,6 @@ class _LoginSignUpState extends State<LoginSignUp> {
           if (response.contains(" ")) {
             _errorMessage = response;
           } else {
-//add user to our database
             userId = response;
             widget.auth.sendEmailVerification();
             _showVerifyEmailSentDialog();
@@ -116,6 +116,8 @@ class _LoginSignUpState extends State<LoginSignUp> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Flutter login demo'),
+          backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+          elevation: 0.0,
         ),
         body: Stack(
           children: <Widget>[
