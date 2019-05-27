@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foxbred/services/authentication.dart';
+import 'package:foxbred/screens/profile.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.auth, this.userId, this.onSignedOut}) : super(key: key);
@@ -20,6 +21,7 @@ class HomeState extends State<Home> {
     return new Scaffold(
       appBar: creatAppBar(),
       body: Container(
+        decoration: new BoxDecoration(color: Colors.white),
         padding: EdgeInsets.all(this.contentPadding),
         child: Column(
           children: <Widget>[
@@ -38,352 +40,374 @@ class HomeState extends State<Home> {
                     Expanded(
                       child: Column(
                         children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: this.contentPadding / 2,
-                                right: this.contentPadding / 2,
-                                top: 0.0,
-                                bottom: this.contentPadding / 4),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(PageRouteBuilder(
-                                    pageBuilder: (BuildContext context,
-                                            Animation<double> animation,
-                                            Animation<double>
-                                                secondaryAnimation) =>
-                                        DetailPage(),
-                                    transitionsBuilder: (
-                                      BuildContext context,
-                                      Animation<double> animation,
-                                      Animation<double> secondaryAnimation,
-                                      Widget child,
-                                    ) {
-                                      return SlideTransition(
-                                        position: Tween<Offset>(
-                                          begin: const Offset(0.0, 1.0),
-                                          end: Offset.zero,
-                                        ).animate(animation),
-                                        child: SlideTransition(
+                          Opacity(
+                            opacity: 0.8,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: this.contentPadding / 2,
+                                  right: this.contentPadding / 2,
+                                  top: 0.0,
+                                  bottom: this.contentPadding / 4),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(PageRouteBuilder(
+                                      pageBuilder: (BuildContext context,
+                                              Animation<double> animation,
+                                              Animation<double>
+                                                  secondaryAnimation) =>
+                                          Profile(callerKey: "left_top"),
+                                      transitionsBuilder: (
+                                        BuildContext context,
+                                        Animation<double> animation,
+                                        Animation<double> secondaryAnimation,
+                                        Widget child,
+                                      ) {
+                                        return SlideTransition(
                                           position: Tween<Offset>(
-                                            begin: Offset.zero,
-                                            end: const Offset(0.0, 1.0),
-                                          ).animate(secondaryAnimation),
-                                          child: child,
-                                        ),
-                                      );
-                                    },
-                                    transitionDuration:
-                                        const Duration(milliseconds: 500)));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withAlpha(70),
-                                            offset: const Offset(3.0, 10.0),
-                                            blurRadius: 15.0)
-                                      ]),
-                                  height: pageHeight() / 4 -
-                                      this.contentPadding -
-                                      (this.contentPadding / 4),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Hero(
-                                        tag: "_background",
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            begin: const Offset(0.0, 1.0),
+                                            end: Offset.zero,
+                                          ).animate(animation),
+                                          child: SlideTransition(
+                                            position: Tween<Offset>(
+                                              begin: Offset.zero,
+                                              end: const Offset(0.0, 1.0),
+                                            ).animate(secondaryAnimation),
+                                            child: child,
+                                          ),
+                                        );
+                                      },
+                                      transitionDuration:
+                                          const Duration(milliseconds: 500)));
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black.withAlpha(70),
+                                              offset: const Offset(3.0, 10.0),
+                                              blurRadius: 15.0)
+                                        ]),
+                                    height: pageHeight() / 4 -
+                                        this.contentPadding -
+                                        (this.contentPadding / 4),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Hero(
+                                          tag: "left_top_background",
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Hero(
-                                                    tag: "_icon",
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        border: Border.all(
-                                                            color: Colors.grey
-                                                                .withAlpha(70),
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            width: 1.0),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                        Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Hero(
+                                                      tag: "left_top_icon",
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          border: Border.all(
+                                                              color: Colors.grey
+                                                                  .withAlpha(
+                                                                      70),
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                              width: 1.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                        alignment:
-                                                            Alignment.topRight,
-                                                        child: Hero(
-                                                          tag: "_more_vert",
-                                                          child: Material(
+                                                    Expanded(
+                                                      child: Container(
+                                                          alignment: Alignment
+                                                              .topRight,
+                                                          child: Hero(
+                                                            tag: "left_top_more_vert",
+                                                            child: Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              type: MaterialType
+                                                                  .transparency,
+                                                            ),
+                                                          )),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: Align(
+                                                      alignment:
+                                                          Alignment.bottomLeft,
+                                                      child: Hero(
+                                                        tag: "left_top_number_of_tasks",
+                                                        child: Material(
                                                             color: Colors
                                                                 .transparent,
-                                                            type: MaterialType
-                                                                .transparency,
-                                                          ),
-                                                        )),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
+                                                            child: Text(
+                                                              "2 Tasks",
+                                                              style:
+                                                                  TextStyle(),
+                                                              softWrap: false,
+                                                            )),
+                                                      ))),
+                                              Padding(
                                                 padding: const EdgeInsets.only(
-                                                    bottom: 8.0),
+                                                    bottom: 20.0),
                                                 child: Align(
                                                     alignment:
                                                         Alignment.bottomLeft,
                                                     child: Hero(
-                                                      tag: "_number_of_tasks",
+                                                      tag: "left_top_title",
                                                       child: Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: Text(
-                                                            " Tasks",
-                                                            style: TextStyle(),
-                                                            softWrap: false,
-                                                          )),
-                                                    ))),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 20.0),
-                                              child: Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Hero(
-                                                    tag: "_title",
-                                                    child: Material(
-                                                      color: Colors.transparent,
-                                                      child: Text(
-                                                        "",
-                                                        style: TextStyle(
-                                                            fontSize: 30.0),
-                                                        softWrap: false,
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: Text(
+                                                          "",
+                                                          style: TextStyle(
+                                                              fontSize: 30.0),
+                                                          softWrap: false,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  )),
-                                            ),
-                                            Hero(
-                                              tag: "_just_a_test",
-                                              child: Material(
-                                                type: MaterialType.transparency,
-                                                child: FadeTransition(
-                                                  opacity:
-                                                      AlwaysStoppedAnimation(
-                                                          0.0),
-                                                  child: ScaleTransition(
-                                                    scale:
+                                                    )),
+                                              ),
+                                              Hero(
+                                                tag: "left_top_just_a_test",
+                                                child: Material(
+                                                  type:
+                                                      MaterialType.transparency,
+                                                  child: FadeTransition(
+                                                    opacity:
                                                         AlwaysStoppedAnimation(
                                                             0.0),
-                                                    child: Container(),
+                                                    child: ScaleTransition(
+                                                      scale:
+                                                          AlwaysStoppedAnimation(
+                                                              0.0),
+                                                      child: Container(),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  )),
+                                      ],
+                                    )),
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: this.contentPadding / 2,
-                                right: this.contentPadding / 2,
-                                top: this.contentPadding / 4,
-                                bottom: 0.0),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(PageRouteBuilder(
-                                    pageBuilder: (BuildContext context,
-                                            Animation<double> animation,
-                                            Animation<double>
-                                                secondaryAnimation) =>
-                                        DetailPage(),
-                                    transitionsBuilder: (
-                                      BuildContext context,
-                                      Animation<double> animation,
-                                      Animation<double> secondaryAnimation,
-                                      Widget child,
-                                    ) {
-                                      return SlideTransition(
-                                        position: Tween<Offset>(
-                                          begin: const Offset(0.0, 1.0),
-                                          end: Offset.zero,
-                                        ).animate(animation),
-                                        child: SlideTransition(
+                          Opacity(
+                            opacity: 0.8,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: this.contentPadding / 2,
+                                  right: this.contentPadding / 2,
+                                  top: this.contentPadding / 4,
+                                  bottom: 0.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(PageRouteBuilder(
+                                      pageBuilder: (BuildContext context,
+                                              Animation<double> animation,
+                                              Animation<double>
+                                                  secondaryAnimation) =>
+                                          Profile(callerKey: "left_bottom"),
+                                      transitionsBuilder: (
+                                        BuildContext context,
+                                        Animation<double> animation,
+                                        Animation<double> secondaryAnimation,
+                                        Widget child,
+                                      ) {
+                                        return SlideTransition(
                                           position: Tween<Offset>(
-                                            begin: Offset.zero,
-                                            end: const Offset(0.0, 1.0),
-                                          ).animate(secondaryAnimation),
-                                          child: child,
-                                        ),
-                                      );
-                                    },
-                                    transitionDuration:
-                                        const Duration(milliseconds: 500)));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black.withAlpha(70),
-                                            offset: const Offset(3.0, 10.0),
-                                            blurRadius: 15.0)
-                                      ]),
-                                  height: pageHeight() / 4 -
-                                      this.contentPadding -
-                                      (this.contentPadding / 4),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Hero(
-                                        tag: "_background",
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
+                                            begin: const Offset(0.0, 1.0),
+                                            end: Offset.zero,
+                                          ).animate(animation),
+                                          child: SlideTransition(
+                                            position: Tween<Offset>(
+                                              begin: Offset.zero,
+                                              end: const Offset(0.0, 1.0),
+                                            ).animate(secondaryAnimation),
+                                            child: child,
+                                          ),
+                                        );
+                                      },
+                                      transitionDuration:
+                                          const Duration(milliseconds: 500)));
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black.withAlpha(70),
+                                              offset: const Offset(3.0, 10.0),
+                                              blurRadius: 15.0)
+                                        ]),
+                                    height: pageHeight() / 4 -
+                                        this.contentPadding -
+                                        (this.contentPadding / 4),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Hero(
+                                          tag: "left_bottom_background",
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Hero(
-                                                    tag: "_icon",
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        border: Border.all(
-                                                            color: Colors.grey
-                                                                .withAlpha(70),
-                                                            style: BorderStyle
-                                                                .solid,
-                                                            width: 1.0),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
+                                        Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Hero(
+                                                      tag: "left_bottom_icon",
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          border: Border.all(
+                                                              color: Colors.grey
+                                                                  .withAlpha(
+                                                                      70),
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                              width: 1.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                        alignment:
-                                                            Alignment.topRight,
-                                                        child: Hero(
-                                                          tag: "_more_vert",
-                                                          child: Material(
+                                                    Expanded(
+                                                      child: Container(
+                                                          alignment: Alignment
+                                                              .topRight,
+                                                          child: Hero(
+                                                            tag: "left_bottom_more_vert",
+                                                            child: Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              type: MaterialType
+                                                                  .transparency,
+                                                            ),
+                                                          )),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 8.0),
+                                                  child: Align(
+                                                      alignment:
+                                                          Alignment.bottomLeft,
+                                                      child: Hero(
+                                                        tag: "left_bottom_number_of_tasks",
+                                                        child: Material(
                                                             color: Colors
                                                                 .transparent,
-                                                            type: MaterialType
-                                                                .transparency,
-                                                          ),
-                                                        )),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
+                                                            child: Text(
+                                                              " Tasks",
+                                                              style:
+                                                                  TextStyle(),
+                                                              softWrap: false,
+                                                            )),
+                                                      ))),
+                                              Padding(
                                                 padding: const EdgeInsets.only(
-                                                    bottom: 8.0),
+                                                    bottom: 20.0),
                                                 child: Align(
                                                     alignment:
                                                         Alignment.bottomLeft,
                                                     child: Hero(
-                                                      tag: "_number_of_tasks",
+                                                      tag: "left_bottom_title",
                                                       child: Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: Text(
-                                                            " Tasks",
-                                                            style: TextStyle(),
-                                                            softWrap: false,
-                                                          )),
-                                                    ))),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 20.0),
-                                              child: Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Hero(
-                                                    tag: "_title",
-                                                    child: Material(
-                                                      color: Colors.transparent,
-                                                      child: Text(
-                                                        "",
-                                                        style: TextStyle(
-                                                            fontSize: 30.0),
-                                                        softWrap: false,
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: Text(
+                                                          "",
+                                                          style: TextStyle(
+                                                              fontSize: 30.0),
+                                                          softWrap: false,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  )),
-                                            ),
-                                            Hero(
-                                              tag: "_just_a_test",
-                                              child: Material(
-                                                type: MaterialType.transparency,
-                                                child: FadeTransition(
-                                                  opacity:
-                                                      AlwaysStoppedAnimation(
-                                                          0.0),
-                                                  child: ScaleTransition(
-                                                    scale:
+                                                    )),
+                                              ),
+                                              Hero(
+                                                tag: "left_bottom_just_a_test",
+                                                child: Material(
+                                                  type:
+                                                      MaterialType.transparency,
+                                                  child: FadeTransition(
+                                                    opacity:
                                                         AlwaysStoppedAnimation(
                                                             0.0),
-                                                    child: Container(),
+                                                    child: ScaleTransition(
+                                                      scale:
+                                                          AlwaysStoppedAnimation(
+                                                              0.0),
+                                                      child: Container(),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  )),
+                                      ],
+                                    )),
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
+                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(
                             left: this.contentPadding / 2,
@@ -396,7 +420,7 @@ class HomeState extends State<Home> {
                                 pageBuilder: (BuildContext context,
                                         Animation<double> animation,
                                         Animation<double> secondaryAnimation) =>
-                                    DetailPage(),
+                                    Profile(callerKey: "right"),
                                 transitionsBuilder: (
                                   BuildContext context,
                                   Animation<double> animation,
@@ -433,7 +457,7 @@ class HomeState extends State<Home> {
                               child: Stack(
                                 children: <Widget>[
                                   Hero(
-                                    tag: "_background",
+                                    tag: "right_background",
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: Colors.white,
@@ -457,7 +481,7 @@ class HomeState extends State<Home> {
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Hero(
-                                                tag: "_icon",
+                                                tag: "right_icon",
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
@@ -480,7 +504,7 @@ class HomeState extends State<Home> {
                                                     alignment:
                                                         Alignment.topRight,
                                                     child: Hero(
-                                                      tag: "_more_vert",
+                                                      tag: "right_more_vert",
                                                       child: Material(
                                                         color:
                                                             Colors.transparent,
@@ -498,11 +522,11 @@ class HomeState extends State<Home> {
                                             child: Align(
                                                 alignment: Alignment.bottomLeft,
                                                 child: Hero(
-                                                  tag: "_number_of_tasks",
+                                                  tag: "right_number_of_tasks",
                                                   child: Material(
                                                       color: Colors.transparent,
                                                       child: Text(
-                                                        " Tasks",
+                                                        "Profile",
                                                         style: TextStyle(),
                                                         softWrap: false,
                                                       )),
@@ -513,7 +537,7 @@ class HomeState extends State<Home> {
                                           child: Align(
                                               alignment: Alignment.bottomLeft,
                                               child: Hero(
-                                                tag: "_title",
+                                                tag: "right_title",
                                                 child: Material(
                                                   color: Colors.transparent,
                                                   child: Text(
@@ -526,7 +550,7 @@ class HomeState extends State<Home> {
                                               )),
                                         ),
                                         Hero(
-                                          tag: "_just_a_test",
+                                          tag: "right_just_a_test",
                                           child: Material(
                                             type: MaterialType.transparency,
                                             child: FadeTransition(
@@ -590,131 +614,5 @@ class HomeState extends State<Home> {
     } catch (e) {
       print(e);
     }
-  }
-}
-
-class DetailPage extends StatefulWidget {
-  @override
-  _DetailPageState createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
-  double percentComplete;
-  AnimationController animationBar;
-  double barPercent = 0.0;
-  Tween<double> animT;
-  AnimationController scaleAnimation;
-
-  @override
-  void initState() {
-    scaleAnimation = AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 1000),
-        lowerBound: 0.0,
-        upperBound: 1.0);
-
-    barPercent = percentComplete;
-    animationBar = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 100))
-      ..addListener(() {
-        setState(() {
-          barPercent = animT.lerp(animationBar.value);
-        });
-      });
-    animT = Tween<double>(begin: percentComplete, end: percentComplete);
-    scaleAnimation.forward();
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Hero(
-          tag: "_background",
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(0.0),
-            ),
-          ),
-        ),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.grey,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 35.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 30.0),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Hero(
-                      tag: "_icon",
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: Colors.grey.withAlpha(70),
-                              style: BorderStyle.solid,
-                              width: 1.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 12.0),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Hero(
-                      tag: "_number_of_tasks",
-                      child: Material(
-                        color: Colors.transparent,
-                        child: Text(
-                          " Tasks",
-                          style: TextStyle(),
-                          softWrap: false,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Hero(
-                      tag: "_title",
-                      child: Material(
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
   }
 }
